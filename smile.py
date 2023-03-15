@@ -154,6 +154,7 @@ def weight_to_mat(weights, indices):
     return mat
 
 def neighbors(distance_matrix, n_neighbors):
+    distance_matrix.fill_diagonal_(-1000) # hacky, makes sure that you are not one of your own nearest neighbors
     indices = np.argsort(distance_matrix.numpy(), axis=1)
     return indices[:,1:n_neighbors+1]
 
